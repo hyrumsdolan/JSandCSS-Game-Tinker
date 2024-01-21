@@ -1,0 +1,115 @@
+:root{
+    --game-width: 1000px;
+    --character-height: 125px;
+    --game-height: calc(var(--game-width) * 0.4);
+    --character-width: calc(var(--character-height) * 0.5);
+    --character-color: red;
+
+}
+
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
+body {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    min-height: 100vh; /* Full viewport height */
+    margin: 0; /* Reset default margin */
+    background-color: rgb(29, 28, 28);
+  }
+  
+  #gameOver {
+    height: 300px;
+    font-size: 150px; /* Adjust the font size as needed */
+    line-height: 300px; /* Aligns text vertically in the center */
+    text-align: center; /* Centers text horizontally */
+    width: 100%; /* Optional: Adjust as needed */
+    color: black; /* Text color */
+
+    /* Additional styles like font-family, etc., can be added as needed */
+}
+
+
+#game{
+    width: var(--game-width);
+    height: var(--game-height);
+    background-color: #ccc;
+    border-bottom: solid 10px #000;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    background-image: url('./background.png');
+    background-size: cover;
+    background-position: center;
+}
+
+#character{
+    width: var(--character-width);
+    height: var(--character-height);
+    background-image: url('./character.png'); /* Replace with your image URL */
+    background-size: cover; /* This ensures the image covers the entire element */
+    background-position: center; /* This centers the image in the element */
+    background-repeat: no-repeat; /* This stops the image from repeating */
+    
+    position: absolute;
+
+    
+    left: 100px;
+    bottom: 0px;
+}
+
+#obstacle-short {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    bottom: 0px;
+    right: -50px; 
+    
+
+    background-image: url('./obstacle.png'); /* Replace with your image URL */
+    background-size: cover; /* This ensures the image covers the entire element */
+    background-position: center; /* This centers the image in the element */
+    background-repeat: no-repeat; /* This stops the image from repeating */
+}
+
+.jump-animation{
+    animation: jump .7s ease-in-out;
+}
+
+.obstacle-animation{
+    animation: obstacleAnimation 3s linear infinite;
+}
+
+.hide{
+    display: none;
+}
+
+@keyframes obstacleAnimation {
+    0% {
+        transform: translateX(0); /* Start from the initial position */
+    }
+    100% {
+        transform: translateX(calc(-1 * var(--game-width) - 50px)); /* Move to the left by the game's width plus the element's width */
+    }
+}
+
+
+@keyframes jump {
+    0% {
+        bottom: 0; /* Start at original position */
+    }
+    30% {
+        bottom: 55px; /* Jump to 50px */
+    }
+    80% {
+        bottom: 55px; /* Reach the peak of the jump at 70px */
+    }
+    100% {
+        bottom: 0px; /* Return to the original position */
+    }
+}
+
+
